@@ -1,0 +1,94 @@
+Iñigotxu
+
+2020/03/08
+
+00:00 - 01:00
+
+Proiektua GitLab era igo
+---------------------------------------------------------------------
+Elene
+
+2020/03/16
+
+Query Fees
+ 	- Find questions moldatu Query Fees erabilpen kasua inplementatzeko
+12:00-13:00
+	 - Hainbat errore konpondu
+16:00:17:30
+
+2020/03/17
+
+Create Fee
+	- CreateFeeGUI sortu eta inplementatu
+	- BLFacadeInplementation-en inplementatu: -public Fee createFee (Question question, String inputPred, float inputFactor)throws EventFinished, ExistingFee ;
+							   				   -public Vector<Question> getQuestions(Event myEvent);
+							   
+	-DataAcces-en inplementatu: - public Vector<Question> getQuestionOfEvent(Event event);
+								- public Fee createFee(Question question, String pred, float fact) throws ExistingFee;
+								
+			egun osua je
+---------------------------------------------------------------------
+
+Iñigo
+
+2020/03/20
+
+16:00 - 19:00
+Bet
+	- Implementation of backend + DataAccess methods
+	
+2020/03/21
+14:00 - 18:00
+Bet
+	-Implementation of frontend
+Create and view fee
+	-Correction of bugs	
+	
+2020/03/22	
+00:20 - 2:55
+Bet
+	-End of implementation
+Remove Bet
+	-End of implementation
+	
+14:00 - 17:oo
+    -Correction of minor changes
+    
+    MADE CHANGES:
+        - DataAccess: Creation and implementation of CreateBet() and RemoveBet() methods.
+        - BLFacadeImplementation: Creation and implementation of removeBet(), getUserByUsername() and createBet() methods.
+        - gui package:
+              - Creation of CreateBetGUI
+              - Creation of RemoveBetGUI
+              - CreateFeeGUI now displays data in JTable instead of JComboBox
+        - exceptions package:
+              - Creation of InsufficientMoney and ExistingBet exceptions.
+        - domain package:
+              - Creation of Bet object
+              - Now RegisteredUser has a Vector<Bet>
+              
+-----------------------------------------------------------------------------------------
+
+Iñigo
+
+
+2020/03/30
+
+22:00 - 1:00
+	-Implementation of calculate profits
+	
+11:00 - 13:00
+	- Correction of minor bugs
+	
+	MADE CHANGES:
+		- When inserting the solution to the question, now system shows the won profits and removes the made bets from users
+		-BLFacade:
+			- SubtractProfitsToQuestion() and removeBetsFromUsers() methods
+		-DataAccess:
+			- SubtractProfitsToQuestion() and removeBetWithoutMoney() methods
+		-EnterResultGUI:
+			- Adapt GUI to calculate profits
+		-exceptions package:
+			- Creation of LessThanTheMinimumMoney exception
+		-Bet functionality:
+			- Now user cannot bet under the minimum quantity of the question

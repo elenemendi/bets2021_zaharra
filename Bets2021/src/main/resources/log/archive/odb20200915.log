@@ -1,0 +1,136 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-09-15 14:22:40 #1 store] 
+Database '/run/media/elene/USB ELENE/UNI/2/SI/PROIEKTUA/p_repository/bets2020/Bets2020/src/main/resources/bets.temp' is opened by 2261@hppaviliongaming
+
+[2020-09-15 14:22:41 #2 type.registry] 
+New type domain.Event
+
+[2020-09-15 14:22:41 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-09-15 14:22:41 #4 type.registry] 
+New type domain.Bet
+
+[2020-09-15 14:22:41 #5 type.registry] 
+New type java.util.Vector<domain.Bet>
+
+[2020-09-15 14:22:41 #6 type.registry] 
+New type domain.Question
+
+[2020-09-15 14:22:41 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-09-15 14:22:41 #8 type] 
+Type domain.Bet is not enhanced.
+
+[2020-09-15 14:22:41 #9 type.registry] 
+New type domain.Fee
+
+[2020-09-15 14:22:41 #10 type.registry] 
+New type domain.User
+
+[2020-09-15 14:22:41 #11 type.registry] 
+New type domain.RegisteredUser
+
+[2020-09-15 14:22:41 #12 type] 
+Type domain.Question is not enhanced.
+
+[2020-09-15 14:22:41 #13 type.registry] 
+New type java.util.Vector<domain.Fee>
+
+[2020-09-15 14:22:41 #14 type] 
+Type domain.Fee is not enhanced.
+
+[2020-09-15 14:22:41 #15 type] 
+Type domain.User is not enhanced.
+
+[2020-09-15 14:22:41 #16 type] 
+Type domain.RegisteredUser is not enhanced.
+
+[2020-09-15 14:22:41 #17 type.registry] 
+New type domain.Movement
+
+[2020-09-15 14:22:41 #18 type.registry] 
+New type java.util.Vector<domain.Movement>
+
+[2020-09-15 14:22:41 #19 type] 
+Type domain.Movement is not enhanced.
+
+[2020-09-15 14:22:41 #20 type.registry] 
+New type domain.Admin
+
+[2020-09-15 14:22:41 #21 type] 
+Type domain.Admin is not enhanced.
+
+[2020-09-15 14:22:41 #22 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-09-15 14:27:40 #1 store] 
+Database '/run/media/elene/USB ELENE/UNI/2/SI/PROIEKTUA/p_repository/bets2020/Bets2020/src/main/resources/bets.temp' is opened by 2647@hppaviliongaming
+
+[2020-09-15 14:27:40 #2 type.registry] 
+New type domain.Event
+
+[2020-09-15 14:27:40 #3 type] 
+Type domain.Event is not enhanced.
+
+[2020-09-15 14:27:40 #4 type.registry] 
+New type domain.Bet
+
+[2020-09-15 14:27:40 #5 type.registry] 
+New type java.util.Vector<domain.Bet>
+
+[2020-09-15 14:27:40 #6 type.registry] 
+New type domain.Question
+
+[2020-09-15 14:27:40 #7 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-09-15 14:27:40 #8 type] 
+Type domain.Bet is not enhanced.
+
+[2020-09-15 14:27:40 #9 type.registry] 
+New type domain.Fee
+
+[2020-09-15 14:27:40 #10 type.registry] 
+New type domain.User
+
+[2020-09-15 14:27:40 #11 type.registry] 
+New type domain.RegisteredUser
+
+[2020-09-15 14:27:40 #12 type] 
+Type domain.Question is not enhanced.
+
+[2020-09-15 14:27:40 #13 type.registry] 
+New type java.util.Vector<domain.Fee>
+
+[2020-09-15 14:27:40 #14 type] 
+Type domain.Fee is not enhanced.
+
+[2020-09-15 14:27:40 #15 type] 
+Type domain.User is not enhanced.
+
+[2020-09-15 14:27:40 #16 type] 
+Type domain.RegisteredUser is not enhanced.
+
+[2020-09-15 14:27:40 #17 type.registry] 
+New type domain.Movement
+
+[2020-09-15 14:27:40 #18 type.registry] 
+New type java.util.Vector<domain.Movement>
+
+[2020-09-15 14:27:40 #19 type] 
+Type domain.Movement is not enhanced.
+
+[2020-09-15 14:27:40 #20 type.registry] 
+New type domain.Admin
+
+[2020-09-15 14:27:40 #21 type] 
+Type domain.Admin is not enhanced.
+
+[2020-09-15 14:27:40 #22 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

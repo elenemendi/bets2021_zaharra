@@ -1,0 +1,37 @@
+
+)domain.Event#toString()Ljava/lang/String;|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaW W("1*É
+1|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX	 X(Ã
+À
+|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX	 X(
+%0java.lang.Integer"__id*!*
+domain.Event"
+eventNumberÅ
+Â
+|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX	 X(
+%1java.lang.String"__concat*
+
+%0java.lang.Integer*
+;Â
+¿
+|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX X((
+%2java.lang.String"__id*!*
+domain.Event"
+description×
+Ô
+|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX	 X((
+%3java.lang.String"__concat*
+
+%1java.lang.String*
+
+%2java.lang.String"˜
+|
+r/run/media/elene/USB ELENE/UNI/3/SI2/Workspace/proeiktua2021.zip_expanded/Bets2020/src/main/java/domain/Event.javaX X()
+
+%3java.lang.StringB
+domain.Event

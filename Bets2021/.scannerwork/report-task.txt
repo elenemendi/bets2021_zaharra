@@ -1,0 +1,7 @@
+organization=elene
+projectKey=betselene
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.12534
+dashboardUrl=https://sonarcloud.io/dashboard?id=betselene
+ceTaskId=AXTAzSBMZg8dIi10qkgf
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXTAzSBMZg8dIi10qkgf
