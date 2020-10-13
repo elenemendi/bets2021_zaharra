@@ -11,7 +11,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
-
+import dataAccess.DataAccess;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
@@ -50,10 +50,15 @@ public class ApplicationLauncher {
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			
+			System.out.println(c);
 			if (c.isBusinessLogicLocal()) {
+				System.out.println("sartu"+c.getDataBaseOpenMode().equals("initialize"));
 				
-			 appFacadeInterface=new BLFacadeImplementation();
+				DataAccess da= new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
+				System.out.println("sartu2");
+				appFacadeInterface=new BLFacadeImplementation(da);
+				System.out.println("kaixo");
+				
 				
 				
 			}

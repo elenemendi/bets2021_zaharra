@@ -25,7 +25,7 @@ public class BusinessLogicServerAWS {
 
 			service= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName();
 				
-			Endpoint.publish(service, new BLFacadeImplementation());
+			Endpoint.publish(service, new BLFacadeImplementation(null));
 
 			System.out.println("\n\nRunning service at:\n\t" + service);
 			System.out.println("\n\n\nPress button to exit this server... ");

@@ -55,18 +55,21 @@ import exceptions.WinnerAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation implements BLFacade {
+	DataAccess dbManager;
 
-	public BLFacadeImplementation() {
-		System.out.println("Creating BLFacadeImplementation instance");
-		ConfigXML c = ConfigXML.getInstance();
-
+	public BLFacadeImplementation(DataAccess da)  { 
+		System.out.println("Creating BLFacadeImplementation  instance with DataAccess parameter"); 
+		ConfigXML c=ConfigXML.getInstance(); 
 		if (c.getDataBaseOpenMode().equals("initialize")) {
-			DataAccess dbManager = new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
-			dbManager.initializeDB();
-			dbManager.close();
-		}
+			da.open(true); 
+			da.initializeDB();
+			da.close();  
+		} 
+		dbManager=da;
 
 	}
+
+	
 
 	/**
 	 * This method creates a question for an event, with a question text and the
@@ -85,15 +88,15 @@ public class BLFacadeImplementation implements BLFacade {
 			throws EventFinished, QuestionAlreadyExist {
 
 		// The minimum bed must be greater than 0
-		DataAccess dBManager = new DataAccess();
+		dbManager.open(false);
 		Question qry = null;
 
 		if (new Date().compareTo(event.getEventDate()) > 0)
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 
-		qry = dBManager.createQuestion(event, question, betMinimum);
+		qry = dbManager.createQuestion(event, question, betMinimum);
 
-		dBManager.close();
+		dbManager.close();
 
 		return qry;
 	};
@@ -106,7 +109,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public List<Event> getEvents(Date date) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Vector<Event> events = dbManager.getEvents(date);
 		dbManager.close();
 		return events;
@@ -121,7 +124,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public List<Date> getEventsMonth(Date date) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Vector<Date> dates = dbManager.getEventsMonth(date);
 		dbManager.close();
 		return dates;
@@ -138,14 +141,14 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public int login(String username, String password) throws IncorrectLogin {
-		DataAccess dbManager = new DataAccess();
+
+		dbManager.open(false);
 		User user = dbManager.getUserByUsername(username);
 
 		if (user == null) {
 			throw new IncorrectLogin();
-
 		}
-
+		
 		if (user.getPassword().compareTo(password) == 0) {
 			System.out.println("Login correct.");
 			dbManager.close();
@@ -173,9 +176,9 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public void initializeBD() {
-		DataAccess dBManager = new DataAccess();
-		dBManager.initializeDB();
-		dBManager.close();
+		dbManager.open(false);
+		dbManager.initializeDB();
+		dbManager.close();
 	}
 
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
@@ -287,9 +290,9 @@ public class BLFacadeImplementation implements BLFacade {
 			RegisteredUser user = new RegisteredUser(name, surname, idNumber, email, username, password, birthDate,
 					userType, cCard);
 
-			DataAccess dBManager = new DataAccess();
-			dBManager.insertRegisteredUser(user);
-			dBManager.close();
+			dbManager.open(false);
+			dbManager.insertRegisteredUser(user);
+			dbManager.close();
 
 		}
 
@@ -332,9 +335,9 @@ public class BLFacadeImplementation implements BLFacade {
 
 		Event event = new Event(eventNumber, description, date);
 
-		DataAccess dBManager = new DataAccess();
-		dBManager.insertEvent(event);
-		dBManager.close();
+		dbManager.open(false);
+		dbManager.insertEvent(event);
+		dbManager.close();
 
 	}
 
@@ -345,9 +348,9 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public Integer getLastEventNumber() {
-		DataAccess dBManager = new DataAccess();
-		Integer eventNumber = dBManager.getLastEventNumber();
-		dBManager.close();
+		dbManager.open(false);
+		Integer eventNumber = dbManager.getLastEventNumber();
+		dbManager.close();
 		return eventNumber;
 
 	}
@@ -359,9 +362,9 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public void removeEvent(domain.Event event) {
-		DataAccess dBManager = new DataAccess();
-		dBManager.removeEventByNumber(event);
-		dBManager.close();
+		dbManager.open(false);
+		dbManager.removeEventByNumber(event);
+		dbManager.close();
 
 	}
 
@@ -381,20 +384,20 @@ public class BLFacadeImplementation implements BLFacade {
 	public Fee createFee(Integer id, Question q, String inputPred, double inputFactor) throws ExistingFee, EventFinished, EmptyDescription {
 
 
-		DataAccess dBManager = new DataAccess();
+		dbManager.open(false);
 		Fee fee = null;
 
-		Question question = dBManager.getQuestionById(q.getQuestionNumber());
+		Question question = dbManager.getQuestionById(q.getQuestionNumber());
 		
 		if (new Date().compareTo(question.getEvent().getEventDate()) > 0)
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 		
 		if (inputPred==null) throw new EmptyDescription();
 
-		 fee = dBManager.createFee(id, question,inputPred, inputFactor);
+		 fee = dbManager.createFee(id, question,inputPred, inputFactor);
 
 
-		dBManager.close();
+		dbManager.close();
 		
 		return fee;
 		
@@ -432,7 +435,7 @@ public class BLFacadeImplementation implements BLFacade {
 		
 		System.out.println(betMoney + " " + u + " " + date + " " + f + " " + description + " " + q);
 		
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Bet bet = dbManager.createBet(betMoney, date, u, f, description);
 		dbManager.close();
 		System.out.println("proba");
@@ -446,7 +449,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public RegisteredUser getUserByUsername(String username){
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		RegisteredUser u = (RegisteredUser) dbManager.getUserByUsername(username);	
 		dbManager.close();
 		return u;
@@ -463,7 +466,7 @@ public class BLFacadeImplementation implements BLFacade {
 	public Bet removeBet(RegisteredUser user, Bet bet, Fee fee, Question question) throws NotSelectedBet {
 		if (bet == null) throw new NotSelectedBet();
 		
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.removeBet(user, bet, fee, question);
 		dbManager.close();
 		return bet;
@@ -486,7 +489,7 @@ public class BLFacadeImplementation implements BLFacade {
 		if(!selected) {
 			throw new UnspecifiedMovement();
 		}
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.updateMoney(user, quantity);
 		dbManager.close();
 		
@@ -499,7 +502,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public void createMovement(Movement mov, RegisteredUser u) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.createMovement(mov,u);
 		dbManager.close();
 		
@@ -529,7 +532,7 @@ public class BLFacadeImplementation implements BLFacade {
 			
 		}
 		
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.enterResult(f, s);
 		dbManager.close();
 	}
@@ -543,7 +546,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public double subtractProfitsToQuestion(double money, Question question) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		double wonMoney = dbManager.subtractProfitsToQuestion(money, question);
 		dbManager.close();
 		
@@ -558,7 +561,7 @@ public class BLFacadeImplementation implements BLFacade {
 	@WebMethod
 	public void removeBetsFromUser(Question question) {
 		Vector<Fee> fees = question.getFees();
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		for (Fee f: fees) {
 			Vector<Bet> bets = f.getBets();
 			if (bets == null) {
@@ -584,7 +587,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public void updateWonMoney(RegisteredUser user, double quantity) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.updateWonMoney(user, quantity);
 		dbManager.close();
 		
@@ -595,7 +598,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public List<RegisteredUser> getTopUsers(){
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Vector<RegisteredUser> res = dbManager.getTopUsers();
 		dbManager.close();
 		return res;
@@ -612,7 +615,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod
 	public RegisteredUser getUserToReplicate(String replicatedUsername, String username) throws EmptyField, NotExistingUser, SameUser {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		RegisteredUser u = (RegisteredUser) dbManager.getUserByUsername(replicatedUsername);
 		
 		if (replicatedUsername.compareTo("") == 0) { 
@@ -651,7 +654,7 @@ public class BLFacadeImplementation implements BLFacade {
 			
 		}
 		
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		dbManager.replicateUser(user, bets, betMoney);
 		dbManager.close();
 	}
@@ -672,7 +675,7 @@ public class BLFacadeImplementation implements BLFacade {
 		}
 		
 		int id = b.getBetNumber();
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		RegisteredUser u = (RegisteredUser) dbManager.getUserByUsername(user.getUsername());
 		Vector<Bet> bets = u.getBets();
 		System.out.println("User: " + u + " Bets: " + bets);
@@ -697,7 +700,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod 
 	public FeeContainer getFeeContainer(Fee f) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Fee fee = dbManager.getFeeByNumber(f.getFeeNum());
 		dbManager.close();
 		return new FeeContainer(fee);
@@ -711,7 +714,7 @@ public class BLFacadeImplementation implements BLFacade {
 	 */
 	@WebMethod 
 	public QuestionContainer getQuestionContainer(Question q) {
-		DataAccess dbManager = new DataAccess();
+		dbManager.open(false);
 		Question question = dbManager.getQuestionById(q.getQuestionNumber());
 		dbManager.close();
 		return new QuestionContainer(question);

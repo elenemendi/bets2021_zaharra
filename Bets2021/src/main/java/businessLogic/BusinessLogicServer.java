@@ -107,7 +107,7 @@ public class BusinessLogicServer extends JDialog {
 				
 				service= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName();
 				
-				Endpoint.publish(service, new BLFacadeImplementation());
+				Endpoint.publish(service, new BLFacadeImplementation(null));
 				
 				
 			}
